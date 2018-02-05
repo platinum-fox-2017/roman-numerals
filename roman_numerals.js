@@ -1,5 +1,18 @@
-function to_roman (num) {
+function to_roman(number) {
   // your implementation code here
+  let romans = ['M', 'DC', 'D', 'CD', 'C', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I']
+  let arabics = [1000, 600, 500, 400, 100, 50, 40, 10, 9, 5, 4, 1]
+  let resultRomantoArabic = ''
+  let i = 0;
+  // Melakukan Pengulangan Selama Panjang Kamus arabics
+  while (i < arabics.length) {
+    while (number % arabics[i] < number) {
+      resultRomantoArabic += romans[i];
+      number -= arabics[i];
+    }
+    i++
+  }
+  return resultRomantoArabic
 }
 
 // Drive code
