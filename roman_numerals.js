@@ -17,7 +17,7 @@ function to_roman (num) {
         for (var i = 5; i < parseInt(observe); i++) {
           balikan = balikan + 'C';
         }
-      } else {
+      } else if (parseInt(observe) != 0){
         for (var i = parseInt(observe); i < 5; i++) {
           balikan = balikan + 'C';
         }
@@ -29,7 +29,7 @@ function to_roman (num) {
         for (var i = 5; i < parseInt(observe); i++) {
           balikan = balikan + 'X';
         }
-      } else {
+      } else if (parseInt(observe) != 0) {
         if (parseInt(observe) <= 3) {
           for (var i = 0; i < parseInt(observe); i++) {
             balikan = balikan + 'X';
@@ -55,7 +55,7 @@ function to_roman (num) {
           balikan = balikan + 'I';
         }
         balikan = balikan + 'V';
-      } else {
+      } else if (parseInt(observe) != 0) {
         for (var i = 0; i < parseInt(observe); i++) {
           balikan = balikan + 'I';
         }
@@ -76,3 +76,4 @@ console.log('9     | IX       | ', to_roman(9))
 console.log('13    | XIII     | ', to_roman(13))
 console.log('1453  | MCDLIII  | ', to_roman(1453))
 console.log('1646  | MDCXLVI  | ', to_roman(1646))
+console.log(to_roman(3000));
