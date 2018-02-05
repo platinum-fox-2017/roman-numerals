@@ -1,5 +1,17 @@
 function to_roman (num) {
   // your implementation code here
+  let romanNumeral = ['M', 'MC', 'D', 'DC', 'C', 'CX', 'L', 'LX', 'X', 'IX', 'V', 'IV', 'I']
+  let arabicNumeral = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+  if (num <=0) {
+    return ""
+  }else{
+    for (let [index, value] of arabicNumeral.entries()) {
+      // console.log(index,value)
+      if (num >= value) {
+        return romanNumeral[index] + to_roman(num - value)
+      }
+    }
+  }
 }
 
 // Drive code
