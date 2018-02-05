@@ -47,6 +47,34 @@ function to_roman(num) {
   return strRoman;
 }
 
+// Solution 3 - Using loop of array
+function to_roman(num) {
+  var romanObject = {
+    M: 1000,
+    CM: 900,
+    D: 500,
+    CD: 400,
+    C: 100,
+    XC: 90,
+    L: 50,
+    XL: 40,
+    X: 10,
+    IX: 9,
+    V: 5,
+    IV: 4,
+    I: 1
+  };
+  var strRoman = "";
+
+  for(var i in romanObject){
+    while(Math.floor(num/romanObject[i])>0){
+      strRoman += i;
+      num-=romanObject[i];
+    }
+  }
+  return strRoman;
+}
+
 // Drive code
 console.log('My totally sweet testing script for new roman\n')
 console.log('input | expected | actual')
