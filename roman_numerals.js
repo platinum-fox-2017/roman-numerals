@@ -6,63 +6,36 @@ output: strings
 */
 
 function to_roman (num) {
-  // your implementation code here
-  // console.log(String(num)[2]); // 1646 -> 4
-  // console.log(String(num).length); // 1
+  var numArr = num.toString().split('').reverse();
+  // console.log(numArr);
+  var roman = ["I", "V", "X", "L", "C", "D", "M"];
+  // [
+  //   { 1: 'I', 5: 'V', 10: 'X', 50: 'L', 100: 'C', 500: 'D', 1000: 'M' }
+  // ];
+  var result = [];
   
-  var hasilRoman = '';
-
-  var arrRoman = [
-    { angka: 1,
-      roman: 'I'},
-    { angka: 4,
-      roman: 'IV'},
-    { angka: 5,
-      roman: 'V'},
-    { angka: 9,
-      roman: 'IX'},
-    { angka: 10,
-      roman: 'X'},
-    { angka: 40,
-      roman: 'XL'},
-    { angka: 50,
-      roman: 'L'},
-    { angka: 90,
-      roman: 'XC'},
-    { angka: 100,
-      roman: 'C'},
-    { angka: 400,
-      roman: 'CD'},
-    { angka: 500,
-      roman: 'D'},
-    { angka: 900,
-      roman: 'CM'},
-    { angka: 1000,
-      roman: 'M'}
-  ]
-
-
-while (num != 0) {
-  var angkaMax = arrRoman[0].angka; // 
-  var indexMax = 0;
-  for (var i = 0; i < arrRoman.length; i++) { // 13 // untuk cari angka terdekat
-    if (arrRoman[i].angka <= num && arrRoman[i].angka > angkaMax) {
-      angkaMax = arrRoman[i].angka;
-      indexMax++;
+  var moveDigitBy = 2;
+  for(var i = 0; i < numArr.length; i++) {
+    switch(Number(numArr[i])) {
+      case 1:
+      case 2:
+      case 3: result.push(roman[i*moveDigitBy].repeat(numArr[i]));
+        break;
+      case 4: result.push(roman[i*moveDigitBy] + roman[i*moveDigitBy+1]);
+        break;
+      case 5: result.push(roman[i*moveDigitBy+1]);
+        break;
+      case 6:
+      case 7:
+      case 8: result.push(roman[i*moveDigitBy+1] + roman[i*moveDigitBy].repeat(numArr[i]-5));
+        break;
+      case 9: result.push(roman[i*moveDigitBy] + roman[i*moveDigitBy+2]);
+        break;
     }
   }
 
-  // console.log(angkaMax); // 100
-  // console.log(indexMax); // 8
-  // console.log(arrRoman[indexMax].roman); // C
-
-  hasilRoman += arrRoman[indexMax].roman;
-  num -= arrRoman[indexMax].angka;
-  
-}
-
-return hasilRoman;
-
+  // console.log(result);
+  return result.reverse().join('');
 }
 
 // Drive code
