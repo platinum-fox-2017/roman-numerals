@@ -1,76 +1,87 @@
-/*
-input: numbers 1 - 3000
-process:
-output: strings
-
-*/
-
-function to_roman (num) {
-  // your implementation code here
-  // console.log(String(num)[2]); // 1646 -> 4
-  // console.log(String(num).length); // 1
-  
-  var hasilRoman = '';
-
-  var arrRoman = [
-    { angka: 1,
-      roman: 'I'},
-    { angka: 4,
-      roman: 'IV'},
-    { angka: 5,
-      roman: 'V'},
-    { angka: 9,
-      roman: 'IX'},
-    { angka: 10,
-      roman: 'X'},
-    { angka: 40,
-      roman: 'XL'},
-    { angka: 50,
-      roman: 'L'},
-    { angka: 90,
-      roman: 'XC'},
-    { angka: 100,
-      roman: 'C'},
-    { angka: 400,
-      roman: 'CD'},
-    { angka: 500,
-      roman: 'D'},
-    { angka: 900,
-      roman: 'CM'},
-    { angka: 1000,
-      roman: 'M'}
-  ]
-
-
-while (num != 0) {
-  var angkaMax = arrRoman[0].angka; // 
-  var indexMax = 0;
-  for (var i = 0; i < arrRoman.length; i++) { // 13 // untuk cari angka terdekat
-    if (arrRoman[i].angka <= num && arrRoman[i].angka > angkaMax) {
-      angkaMax = arrRoman[i].angka;
-      indexMax++;
-    }
+class RomanNumerals{
+  constructor(nilai){
+      this.kamus = nilai
+      this.hasil = ""
   }
 
-  // console.log(angkaMax); // 100
-  // console.log(indexMax); // 8
-  // console.log(arrRoman[indexMax].roman); // C
+  to_roman(value){
+      for(let i = value; i >= 0; i--){
+          const result = this.kamus.filter(kamu =>{
+              let pembagian = value / kamu.digits
 
-  hasilRoman += arrRoman[indexMax].roman;
-  num -= arrRoman[indexMax].angka;
-  
+              if(pembagian >= 1){
+                  return kamu
+              }
+          })
+          this.hasil += result[0].romanNumeral
+          value -= result[0].digits
+          
+          if(value === 0){
+              break;
+          }
+      }
+
+      return this.hasil
+  }
 }
 
-return hasilRoman;
+let nilai = [{
+  romanNumeral : "M",
+  digits : 1000,
+},
+{
+  romanNumeral : "MC",
+  digits : 900,
+},
+{
+  romanNumeral : "D",
+  digits : 500,
+},
+{
+  romanNumeral : "CD",
+  digits : 400,
+},
+{
+  romanNumeral : "C",
+  digits : 100,
+},
+{
+  romanNumeral : "CX",
+  digits : 90,
+},
+{
+  romanNumeral : "L",
+  digits : 50,
+},
+{
+  romanNumeral : "XL",
+  digits : 40,
+},
+{
+  romanNumeral : "X",
+  digits : 10,
+},
+{
+  romanNumeral : "XI",
+  digits : 9,
+},
+{
+  romanNumeral : "V",
+  digits : 5,
+},
+{
+  romanNumeral : "IV",
+  digits : 4,
+},
+{
+  romanNumeral : "I",
+  digits : 1,
+}]
 
-}
+let romanNumer = new RomanNumerals(nilai)
 
-// Drive code
-console.log('My totally sweet testing script for new roman\n')
-console.log('input | expected | actual')
-console.log('——————|——————————|———————')
-console.log('4     | IV       | ', to_roman(4))
-console.log('9     | IX       | ', to_roman(9))
-console.log('13    | XIII     | ', to_roman(13))
-console.log('1453  | MCDLIII  | ', to_roman(1453))
-console.log('1646  | MDCXLVI  | ', to_roman(1646))
+// console.log(romanNumer.to_roman(4))
+// console.log(romanNumer.to_roman(9))
+console.log(romanNumer.to_roman(23))
+// console.log(romanNumer.to_roman(1453))
+// console.log(romanNumer.to_roman(1646))
