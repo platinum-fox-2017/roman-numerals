@@ -1,3 +1,4 @@
+// Solution 1 - using switch case
 function to_roman (num) {
   // your implementation code here
   var arrNum = num.toString().split("").reverse();
@@ -28,6 +29,22 @@ function to_roman (num) {
     }
   }
   return romanNum.reverse().join("");
+}
+
+
+// Solution 2 - Using loop of array
+function to_roman(num) {
+  var romanArray = ["I","IV","V","IX","X","XL","L","XC","C","CD","D","CM","M"];
+  var numberArray = [1,4,5,9,10,40,50,90,100,400,500,900,1000];
+  var strRoman = "";
+
+  for(var i =numberArray.length-1; i>=0;i--){
+    while(Math.floor(num/numberArray[i])>0){
+      strRoman += romanArray[i];
+      num-=numberArray[i];
+    }
+  }
+  return strRoman;
 }
 
 // Drive code
