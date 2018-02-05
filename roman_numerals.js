@@ -1,17 +1,31 @@
-function to_roman (num) {
-  // your implementation code here
+// function to_roman (num) {
+//   // your implementation code here
+//   let romanNumeral = ['M', 'MC', 'D', 'DC', 'C', 'CX', 'L', 'LX', 'X', 'IX', 'V', 'IV', 'I']
+//   let arabicNumeral = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+//   if (num <=0) {
+//     return ""
+//   }else{
+//     for (let [index, value] of arabicNumeral.entries()) {
+//       console.log(index,value)
+//       if (num >= value) {
+//         return romanNumeral[index] + to_roman(num - value)
+//       }
+//     }
+//   }
+// }
+
+function to_roman(num) {
   let romanNumeral = ['M', 'MC', 'D', 'DC', 'C', 'CX', 'L', 'LX', 'X', 'IX', 'V', 'IV', 'I']
   let arabicNumeral = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
-  if (num <=0) {
-    return ""
-  }else{
-    for (let [index, value] of arabicNumeral.entries()) {
-      // console.log(index,value)
-      if (num >= value) {
-        return romanNumeral[index] + to_roman(num - value)
-      }
+  result = ""
+  // console.log(romanNumeral.length)
+  for (let i = 0; i < romanNumeral.length; i++) {
+    while (num >= arabicNumeral[i]) {
+      result += romanNumeral[i]
+      num -= arabicNumeral[i]
     }
   }
+  return result
 }
 
 // Drive code
