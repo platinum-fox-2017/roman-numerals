@@ -1,33 +1,31 @@
-function to_roman (num) {
-  // your implementation code here
-  var arrNum = num.toString().split("").reverse();
-  var romanNum = [];
-  var romanArray = ["I","V","X","L","C","D","M"];
-  for(var i = 0; i < arrNum.length; i++){
-    //console.log("ini: "+arrNum[i])
-    switch(parseInt(arrNum[i])){
-      case 1:
-      case 2:
-      case 3:
-      romanNum.push(romanArray[i*2].repeat(arrNum[i]));
-      break;
-      case 4:
-      romanNum.push(romanArray[i*2]+romanArray[i*2+1]);
-      break;
-      case 5:
-      romanNum.push(romanArray[i*2+1]);
-      break;
-      case 6:
-      case 7:
-      case 8:
-      romanNum.push(romanArray[i*2+1]+romanArray[i*2].repeat(arrNum[i]-5));
-      break;
-      case 9:
-      romanNum.push(romanArray[i*2]+romanArray[i*2+2]);
-      break;
+function to_roman(num) {
+  var result = '';
+  var listDecimalandRoman = [
+    {decimal: 1, roman : 'I'},
+    {decimal: 4, roman : 'IV'},
+    {decimal: 5, roman : 'V'},
+    {decimal: 9, roman : 'IX'},
+    {decimal: 10, roman : 'X'},
+    {decimal: 40, roman : 'XL'},
+    {decimal: 50, roman : 'L'},
+    {decimal: 90, roman : 'XC'},
+    {decimal: 100, roman : 'C'},
+    {decimal: 400, roman : 'CD'},
+    {decimal: 500, roman : 'D'},
+    {decimal: 900, roman : 'CM'},
+    {decimal: 1000, roman : 'M'}
+  ];
+
+  while(num != 0) {
+    for (var i = listDecimalandRoman.length - 1; i >= 0; i--) {
+      if (listDecimalandRoman[i].decimal <= num) {
+        result += listDecimalandRoman[i].roman;
+        num -= listDecimalandRoman[i].decimal;
+      }
     }
   }
-  return romanNum.reverse().join("");
+
+  return result;
 }
 
 // Drive code
