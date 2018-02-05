@@ -1,5 +1,24 @@
 function to_roman (num) {
-  // your implementation code here
+ var kata=['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I'];
+ var angka = [1000,900,500,400,100,90,50,40,10,9,5,4,1];
+ var temp='';
+ for (var i=num;i>=0;i--)
+    {
+      for(var j=0;j<=angka.length-1;j++)
+        {
+          if(num>=angka[j])
+          {
+         
+            while(num-angka[j]>=0)
+            {
+              num=num-angka[j];
+              temp+=kata[j];
+            }
+          }
+        }
+   
+    }  
+    return temp;
 }
 
 // Drive code
