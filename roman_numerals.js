@@ -67,10 +67,14 @@ function to_roman(num) {
   var strRoman = "";
 
   for(var i in romanObject){
-    while(Math.floor(num/romanObject[i])>0){
+    // while(Math.floor(num/romanObject[i])>0){
+    //   strRoman += i;
+    //   num-=romanObject[i];
+    // }
+    for(num; num >= romanObject[i]; num-=romanObject[i]){
       strRoman += i;
-      num-=romanObject[i];
     }
+
   }
   return strRoman;
 }
